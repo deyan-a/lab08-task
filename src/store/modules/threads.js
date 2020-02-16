@@ -1,6 +1,6 @@
 import threadsApi from '../../api/threadsApi';
 
-const GET_THREADS = 'GET_THREADS';
+export const GET_THREADS = 'GET_THREADS';
 
 const DEFAULT_STATE = {
     threadsById: {},
@@ -22,7 +22,7 @@ export default function(state = DEFAULT_STATE, action) {
     return state;
 }
 
-export const getTHreads = () => ({
+export const getThreads = () => ({
     type: GET_THREADS,
     payload: threadsApi.getThreads()
 });
