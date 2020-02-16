@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import MessageList from '../partials/MessageList';
 import * as actions from '../../store/modules/threads';
-import './styles/Threads.scss';
 
 class Threads extends React.Component {
     componentDidMount() {
@@ -9,7 +9,7 @@ class Threads extends React.Component {
     }
 
     render() {
-        const { getThreadsStatus } = this.props;
+        const { getThreadsStatus, threadsById } = this.props;
 
         if (!getThreadsStatus || getThreadsStatus === 'pending') {
             return <div className="message">Loading..</div>;
@@ -22,13 +22,21 @@ class Threads extends React.Component {
                 </div>
             );
         }
+        const threadsIds = Object.keys(threadsById);
 
-        return null;
+        return threadsIds.lenght < 1 ? (
+            <div className="message">
+                Currently there are no available messages
+            </div>
+        ) : (
+            threadsIds.map(id => <MessageList key={id} threadId={id} />)
+        );
     }
 }
 
 const mapStateToProps = store => ({
-    getThreadsStatus: store.status?.getThreads?.status
+    getThreadsStatus: store.status?.getThreads?.status,
+    threadsById: store.threads.threadsById
 });
 
 export default connect(mapStateToProps)(Threads);
