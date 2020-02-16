@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { getThreadById } from '../../../store/selectors';
 
 const MessageList = ({ messages }) => {
     return messages.map(message => <div key={message.id}>{message.text}</div>);
 };
 
 const mapStateToProps = (store, { threadId }) => ({
-    messages: store.threads.threadsById[threadId]
+    messages: getThreadById(threadId, store.threads.threadsById)
 });
 
 export default connect(mapStateToProps)(MessageList);

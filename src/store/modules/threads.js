@@ -4,7 +4,8 @@ export const GET_THREADS = 'GET_THREADS';
 
 const DEFAULT_STATE = {
     threadsById: {},
-    allThreads: null
+    allThreads: null,
+    messages: new Map()
 };
 
 export default function(state = DEFAULT_STATE, action) {
@@ -16,7 +17,11 @@ export default function(state = DEFAULT_STATE, action) {
             return threadId ? { ...res, [threadId]: thread } : res;
         }, {});
 
-        return { ...state, threadsById, allThreads: threads };
+        const messages = threads.reduce((res, thread) => {
+            return thread.reduce((msgMap, msg) => msgMap.set(msg.id, msg), res);
+        }, new Map());
+
+        return { ...state, threadsById, messages, allThreads: threads };
     }
 
     return state;
