@@ -9,7 +9,7 @@ class Threads extends React.Component {
     }
 
     render() {
-        const { getThreadsStatus, threadsById } = this.props;
+        const { getThreadsStatus, threads } = this.props;
 
         if (!getThreadsStatus || getThreadsStatus === 'pending') {
             return <div className="message">Loading..</div>;
@@ -22,7 +22,7 @@ class Threads extends React.Component {
                 </div>
             );
         }
-        const threadsIds = Object.keys(threadsById);
+        const threadsIds = Object.keys(threads);
 
         return threadsIds.lenght < 1 ? (
             <div className="message">
@@ -36,7 +36,7 @@ class Threads extends React.Component {
 
 const mapStateToProps = store => ({
     getThreadsStatus: store.status?.getThreads?.status,
-    threadsById: store.threads.threadsById
+    threads: store.threads.threads
 });
 
 export default connect(mapStateToProps)(Threads);
