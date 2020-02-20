@@ -1,20 +1,24 @@
-const mapThreadsById = threads => {
+const foldThreadsById = threads => {
     return threads.reduce((res, thread) => {
         const threadId = thread[0]['thread_id'];
+        const score = thread
+            .filter(m => !m.score)
+            .reduce((total, m) => total + m.score, 0);
 
-        return threadId ? { ...res, [threadId]: thread } : res;
+        return threadId
+            ? { ...res, [threadId]: { messages: thread, score } }
+            : res;
     }, {});
 };
 
-const mapMessagesById = threads => {
+const foldMessagesById = threads => {
     return threads.reduce((res, thread) => {
         return thread.reduce((res, msg) => ({ ...res, [msg.id]: msg }), res);
     }, {});
 };
 
 export const mergeThreads = (threads, state) => {
-    const threadsById = mapThreadsById(threads);
-    const messages = mapMessagesById(threads);
-
+    const threadsById = foldThreadsById(threads);
+    const messages = foldMessagesById(threads);
     return { ...state, threads: threadsById, messages, allThreads: threads };
 };
