@@ -8,12 +8,12 @@ class MessageList extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isCollapsed: true };
-        this.toggleMessagesList = this.toggleMessagesList.bind(this);
+        this.expandMessagesList = this.expandMessagesList.bind(this);
     }
     state = { isCollapsed: true };
 
-    toggleMessagesList() {
-        if (this.props.thread.messages.length > 1) {
+    expandMessagesList() {
+        if (this.state.isCollapsed && this.props.thread.messages.length > 1) {
             this.setState(prevState => ({
                 isCollapsed: !prevState.isCollapsed
             }));
@@ -37,15 +37,19 @@ class MessageList extends React.Component {
                 className="messages-container"
                 role="button"
                 tabIndex={0}
-                onClick={this.toggleMessagesList}
-                onKeyPress={e => e.key === 'Enter' && this.toggleMessagesList}
+                onClick={this.expandMessagesList}
+                onKeyPress={e => e.key === 'Enter' && this.expandMessagesList}
             >
                 {threadSize > 1 &&
                     <div className="thread-size"><span className={threadSizeTitleClass}>{`${threadSize} mesages`}</span></div>
                 }
-                {messages.map((message, i) => (
-                    <MessageListItem key={message.id} messageId={message.id} />
-                ))}
+                {messages.map((message, i) => {
+                  if (!i || !isCollapsed) {
+                     return <MessageListItem key={message.id} messageId={message.id} />
+                      }
+
+                }
+                )}
             </div>
         );
     }
