@@ -1,13 +1,24 @@
 const foldThreadsById = threads => {
     return threads.reduce((res, thread) => {
         const threadId = thread[0]['thread_id'];
-        const score = thread
-            .filter(m => !m.score)
-            .reduce((total, m) => total + m.score, 0);
 
-        return threadId
-            ? { ...res, [threadId]: { messages: thread, score } }
-            : res;
+        if (!threadId) {
+            return res;
+        }
+
+        const messagesWithScore = thread.filter(m => !!m.score);
+        const score = messagesWithScore.reduce(
+            (total, m) => total + m.score,
+            0
+        );
+
+        return {
+            ...res,
+            [threadId]: {
+                messages: thread,
+                score: score / messagesWithScore.length
+            }
+        };
     }, {});
 };
 
