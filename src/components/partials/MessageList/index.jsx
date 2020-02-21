@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 import { getThreadById } from '../../../store/selectors';
 import MessageListItem from './MessageListItem';
 
@@ -28,6 +29,8 @@ class MessageList extends React.Component {
         if (!messages || messages.length === 0) {
             return null;
         }
+        const threadSizeTitleClass = classnames('size-title', {'positive-title': score >= 6, 'negative-title': score < 6});
+        const threadSize = messages.length;
 
         return (
             <div
@@ -37,6 +40,9 @@ class MessageList extends React.Component {
                 onClick={this.toggleMessagesList}
                 onKeyPress={e => e.key === 'Enter' && this.toggleMessagesList}
             >
+                {threadSize > 1 &&
+                    <div className="thread-size"><span className={threadSizeTitleClass}>{`${threadSize} mesages`}</span></div>
+                }
                 {messages.map((message, i) => (
                     <MessageListItem key={message.id} messageId={message.id} />
                 ))}

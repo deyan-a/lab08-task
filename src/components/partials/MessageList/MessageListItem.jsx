@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import classnames from 'classnames';
 import { getMessageById } from '../../../store/selectors';
 
 function MessageListItem({ message }) {
     const { text, question, subject, team, created_at: createdAt, score } = message;
 
-    const titleClass = score > 6 ? 'positive-score' : 'negative-score';
+    const titleClass = classnames('msg-title', {'positive-score': score >= 6, 'negative-score': score <= 5});
     const createdDate = new Date(createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short'});
 
     return (
