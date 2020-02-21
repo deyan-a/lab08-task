@@ -12,7 +12,7 @@ class MessageList extends React.Component {
     state = { isCollapsed: true };
 
     toggleMessagesList() {
-        if (this.props.messages.length > 1) {
+        if (this.props.thread.messages.length > 1) {
             this.setState(prevState => ({
                 isCollapsed: !prevState.isCollapsed
             }));
