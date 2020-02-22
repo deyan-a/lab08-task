@@ -5,6 +5,10 @@ html {
     margin: 0;
     overflow-y: scroll;
     overflow-x: hidden;
+
+    @media #{$breakpoint} {
+         overflow-x: scroll;
+    }
 }
 
 body {
@@ -35,8 +39,16 @@ body {
 
 .messages-container {
     margin-top: 10px;
-    width: 400px;
+    width: 768px;
     padding: 0 15px;
+
+    @media #{$mobile} {
+        width: 90%;
+    }
+
+    @media #{$breakpoint} {
+        min-width: 320px;
+    }
 }
 
 .message-container {
@@ -45,7 +57,7 @@ body {
     border-radius: 6px;
     margin-top: 10px;
     padding: 15px;
-    width: 100%;
+    width: 95%;
     font-size: 11px;
     & div:last-of-type {
         padding-top: 5px;

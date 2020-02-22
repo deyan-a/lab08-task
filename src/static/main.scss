@@ -19,3 +19,7 @@
         flex: #{$i};
     }
 }
+
+$breakpoint: "(max-width: 320px)";
+$mobile: "(max-width: 768px)";
+$tablet: "(max-width: 1280px)";
