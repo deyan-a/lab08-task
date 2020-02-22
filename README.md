@@ -1,5 +1,4 @@
-This project is a solution to the Lab|08 Front-end task. It uses json-server to feed data to the Single Page Application. The app itself is 
-using the following tech stack:
+This project is a solution to the Lab|08 Front-end task assignment. The app uses following tech stack:
 
 React for UI and basic local state management;
 Create React App for bootstrapping the application;
