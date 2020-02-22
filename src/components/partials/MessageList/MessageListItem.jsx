@@ -11,7 +11,7 @@ function MessageListItem({ message, className, isCollapsed }) {
     const createdDate = new Date(createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short'});
 
     return (
-        <div className={containerClass}>
+        <article className={containerClass}>
             <div className="message-row">
                 <span className={titleClass}>{subject}</span>
                 <span>{team}</span>
@@ -23,7 +23,7 @@ function MessageListItem({ message, className, isCollapsed }) {
             <div className="message-row">
                 <span>{text}</span>
             </div>
-        </div>
+        </article>
     );
 }
 
