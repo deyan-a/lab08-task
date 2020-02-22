@@ -102,6 +102,14 @@ body {
     border-radius: 6px;
     padding: 1px 10px;
     bottom: -15px;
+    right: 25px;
+    min-width: 60px;
+    text-align: center;
+
+    @media #{$mobile} {
+        // min-width: fit-content;
+        right: 10px;
+    }
 }
 
 .positive-title {
@@ -123,7 +131,7 @@ body {
         box-shadow: 0px 0px 0px 1px $grey;
         background: $white;
         left: #{$i * 4}px;
-        top: #{$i * -70}px;
+        top: #{$i * -65}px;
         z-index: -#{$i};
 
         & .message-question {
