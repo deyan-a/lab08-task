@@ -130,7 +130,7 @@ body {
         box-shadow: 0px 0px 0px 1px $grey;
         background: $white;
         left: #{$i * 4}px;
-        top: #{$i * -65}px;
+        top: #{$i * -68}px;
         z-index: -#{$i};
 
         & .message-question {
