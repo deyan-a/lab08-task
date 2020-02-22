@@ -29,27 +29,32 @@ class MessageList extends React.Component {
         if (!messages || messages.length === 0) {
             return null;
         }
-        const threadSizeTitleClass = classnames('size-title', {'positive-title': score >= 6, 'negative-title': score < 6});
+
+        const containerClass = classnames('messages-container', {'collapsed-msgs-container': isCollapsed});
+        const threadSizeTitleClass = classnames('size-title', { 'positive-title': score >= 6, 'negative-title': score < 6 });
         const threadSize = messages.length;
 
         return (
             <div
-                className="messages-container"
+                className={containerClass}
                 role="button"
                 tabIndex={0}
                 onClick={this.expandMessagesList}
                 onKeyPress={e => e.key === 'Enter' && this.expandMessagesList}
             >
-                {threadSize > 1 &&
-                    <div className="thread-size"><span className={threadSizeTitleClass}>{`${threadSize} mesages`}</span></div>
+                {(threadSize > 1 && isCollapsed) &&
+                    <div className="thread-size">
+                        <span className={threadSizeTitleClass}>{`${threadSize} mesages`}</span>
+                    </div>
                 }
-                {messages.map((message, i) => {
-                  if (!i || !isCollapsed) {
-                     return <MessageListItem key={message.id} messageId={message.id} />
-                      }
-
-                }
-                )}
+                {messages.map((message, i) => (
+                     <MessageListItem
+                        key={message.id}
+                        messageId={message.id}
+                        className={`message-stack-${i}`}
+                        isCollapsed={(!!i && isCollapsed)}
+                    />
+                ))}
             </div>
         );
     }
