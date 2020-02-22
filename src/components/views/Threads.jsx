@@ -18,7 +18,7 @@ class Threads extends React.Component {
         if (getThreadsStatus === 'rejected') {
             return (
                 <div className="error">
-                    An error occurred. Please try again later.
+                    An error occurred trying to get your data. Please try again later.
                 </div>
             );
         }
@@ -26,7 +26,7 @@ class Threads extends React.Component {
 
         return threadsIds.lenght < 1 ? (
             <div className="message">
-                Currently there are no available messages
+                Currently there are no available messages.
             </div>
         ) : (
             threadsIds.map(id => <MessageList key={id} threadId={id} />)
