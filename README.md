@@ -1,12 +1,12 @@
 This project is a solution to the Lab|08 Front-end task assignment. The app uses following tech stack:
 
-React for UI and basic local state management;
-Create React App for bootstrapping the application;
-axios for data fetching;
-Redux for state management;
-redux-thunk and redux-promise-middleware for async actions;
-Eslint and prettier for applying basic code-convention;
-SASS as CSS preprocessor;
+* React for UI and basic local state management;
+* Create React App for bootstrapping the application;
+* axios for data fetching;
+* Redux for state management;
+* redux-thunk and redux-promise-middleware for async actions;
+* Eslint and prettier for applying basic code-convention;
+* SASS as CSS preprocessor;
 
 
 ## Available Scripts
